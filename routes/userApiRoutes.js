@@ -25,11 +25,12 @@ router.get('/user/:id', (req, res) => {
 });
 
 
-router.post('/user/new', (req, res) =>{
-    User.create()
+router.post('/user/new', ({ body }, res) =>{
+    User.create(body)
     .then(newUser => {
         res.json(newUser);
     })
+    .catch(err => res.json(err));
 });
 
 router.put('/user/update', (req, res) => {
